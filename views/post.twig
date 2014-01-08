@@ -1,0 +1,21 @@
+{% extends "index.twig" %}
+{% block stylesheets %}
+	<link href="../css/bootstrap.css" type="text/css" rel="stylesheet" />
+	<link href="../css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
+	<link href="../css/style.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+{% endblock %}
+
+
+{% block content %}
+{% for p in post %}
+	<h1> {{ p.title }} </h1>
+	<p> {{ p.content }} </p>
+{% endfor %}
+
+
+
+{% endblock %}
+
+

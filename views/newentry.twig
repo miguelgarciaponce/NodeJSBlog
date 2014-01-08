@@ -1,0 +1,58 @@
+{% extends "index.twig" %}
+
+{% block stylesheets %}
+	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://ec2-54-213-202-129.us-west-2.compute.amazonaws.com:3000');
+		socket.on('add_post', function (data) {
+		    $("#btn_save").click(function(event) {
+				/* Act on the event */
+				var title = $("#title").val();
+				var content = $("#content").val();
+				socket.emit('my other event', { title: title , 
+					content: content});
+			});
+		    
+		});
+
+		socket.on('post_success', function (data) {
+		    alert("post_success");
+		    location.href = '/blog';
+		});
+
+
+
+		
+
+	</script>
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Create new entry</h1>
+<div class="row">
+	<div class="span12">
+		<div class="input-group">
+			Title:
+			<input id="title" type="text" class="form-control inputentryform" placeholder="Username"><br/><br/>
+			
+			Content:<br/><textarea id="content" rows="12" class="form-control inputentryform" ></textarea><br/><br/>
+
+			<div class="btn-group">
+				<button class="btn btn-primary" id="btn_save">Save</button>
+			</div>
+		</div>
+
+
+		
+
+	</div>
+
+</div>
+{% endblock %}

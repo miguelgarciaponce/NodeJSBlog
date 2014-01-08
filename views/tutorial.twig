@@ -1,0 +1,120 @@
+{% extends "index.twig" %}
+
+{% block navbar %}
+
+<nav class="navbar navbar-inverse" role="navigation">
+	<ul class="nav navbar-nav">
+		<li ><a href="/">Home</a></li>
+		<li ><a href="/blog">Blog</a></li>
+		<li class="dropdown active">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="tutorial">Full tutorial</a></li>
+				<li class="divider"></li>
+				<li><a href="#install">Installing Node.js and modules</a></li>
+				<li><a href="#express">Using Express to generate paths</a></li>
+				<li><a href="#twig">Using Twig as template engine</a></li>
+				<li><a href="#mongo">Using MongoDB to get data</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Tutorial</h1>
+<section>
+	<div class="row">
+		<div class="span12">
+			<h2><a name="install"> Installing Node.js and modules </a></h2>
+			
+			<p>First of all, we must to install Node.js, to proceed, we must to type in a shell the following commands: 
+			</p>			
+			<pre>sudo apt-get install python-software-properties python g++ make<br/>sudo add-apt-repository ppa:chris-lea/node.js<br/>sudo apt-get update<br/>sudo apt-get install nodejs</pre>
+
+			<p>In order to use these modules, I have to install it. We can use the "npm install" command like this:</p>
+			<pre>npm install express<br/>npm install twig<br/>npm install socket.io<br/>npm install mongodb</pre>
+		</div>
+
+	</div>
+	
+</section>
+<section>
+	<div class="row">
+		<div class="span12">
+			<h2><a name="express"> Using Express </a></h2>
+			<p>We can use the Express module making a reference to it:</p>
+
+			<pre>var express = require('express'),<br/>app = express();</pre>
+			
+			<p>Express 3 requires that you instantiate a 'http.Server' to attach socket.io to first: </p>
+			<pre>var server = require('http').createServer(app)<br/>, io = require('socket.io').listen(server);<br/>server.listen(3000);</pre>
+		</div>
+
+	</div>
+	
+</section>
+<section>
+	<div class="row">
+		<div class="span12">
+			<h2><a name="twig"> Using Twig </a></h2>
+			<p>To use the Twig template engine, we must to make reference to it:</p>
+			<pre>var Twig = require("twig");</pre>			
+			
+			<p>Then, when we have to use the render method for the response, we make reference to the .twig file, located in the 'views' folder.</p>
+			<pre>res.render('blog.twig', {<br/>	message : documents<br/>});</pre>
+		</div>
+
+	</div>
+	
+</section>
+<section>
+	<div class="row">
+		<div class="span12">
+			<h2><a name="mongo"> Using MongoDB </a></h2>
+			<p>To use the MongoDB in Node.js, we must to make reference to it:</p>
+			<pre>var MongoClient = require('mongodb').MongoClient;</pre>			
+			
+			<p>Then, to connect to the post database and get a collection of documents (posts) in a array we can use the following code:</p>
+			<pre>MongoClient.connect("mongodb://localhost:27017/post", function(err, db) {<br/>    if(err) { return console.dir(err); }<br/>    message = "Connect!!!";<br/>    db.collection('posts', function(err, collection) {<br/>        collection.find().toArray(function(err, documents) {<br/>            res.render('blog.twig', {<br/>                message : documents<br/>            });<br/>            db.close();<br/>        });<br/>    }); <br/>});</pre>
+		</div>
+
+	</div>
+	
+</section>
+
+
+<section>
+	<div class="row">
+		<div class="span12">
+			<h2><a name="mongo">URL with parameters</a></h2>
+			<p>When we list the post titles and their content, weh have in the title a link, which give us a way to access to that specific post. This uses parameters in the URL and we can handle this in the following way:</p>
+			<pre>app.get('/blog/:id', function(req, res) {<br/>    var MongoClient = require('mongodb').MongoClient;<br/>    MongoClient.connect("mongodb://localhost:27017/post", function(err, db) {<br/>    if(err) { return console.dir(err); }<br/>    db.collection('posts', function(err, collection) {<br/>        var mongo = require('mongodb');<br/>        var BSON = mongo.BSONPure;<br/>        var o_id = new BSON.ObjectID(req.params.id);<br/>        var idii = "ObjectId(\"" + req.params.id + "\")";<br/>        collection.find({ "_id" : o_id }).toArray(function(err, documents) {<br/>             res.render('post.twig', {<br/>                post : documents<br/>            });<br/>            db.close();<br/>        });<br/>    });<br/>});</pre>
+
+			<p>In this case, i use the id Object of the mondodb database as parameter in the URL, but, to be more redeable for the user, perhaps we can use the title of the post, in that case, you have to think about the primary key, because you can get more than one post with the same title.</p>
+		</div>
+
+	</div>
+	
+</section>
+
+<section>
+	<div class="row">
+		<div class="span12">
+			<h2><a name="mongo"> Conclusion </a></h2>
+			<p>These are the main things you have to do to create a Node.js app using MongoDB as database system, Express.js , Socket.io and Twig.</p>
+
+			<p>Everybody can publish a post in this Blog/Tutorial. I have used Bootstap framework to give visual style to de website. The next step I will do is to place this website in a ec2 instance of Amazon WebService to publish it. All the code I will upload in github and my personal website (portfolio).</p>
+		</div>
+
+	</div>
+
+</section>
+
+
+{% endblock %}
+
+

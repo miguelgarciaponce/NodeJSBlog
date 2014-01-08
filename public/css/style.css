@@ -1,0 +1,86 @@
+.inputentryform  {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.btn-group{
+	width: 100%;
+}
+.input-group{
+	width: 80%;
+}
+
+.navbar{
+	-webkit-border-radius: 0px;
+	        border-radius: 0px;
+}
+
+textarea.inputentryform{
+	resize:none;
+	
+}
+
+#btn_save{
+	float: right;
+}
+
+.img_welcome{
+	width: 20%;
+	margin: 2%;
+	height: auto;
+	display: inline-block;
+}
+
+#btn_continue_tutorial{
+	width: 100%;
+}
+
+.continue{
+	text-align: center;
+}
+
+.container{
+	margin-bottom: 5%;
+}
+@keyframes mymove
+{
+	0%   {top:0px;}
+	25%  {top:200px;}
+	75%  {top:50px}
+	100% {top:100px;}
+}
+
+@-webkit-keyframes mymove /* Safari and Chrome */
+{
+	0%   {}
+	100% {transform:rotate(1440deg);
+		-ms-transform:rotate(1440deg); /* IE 9 */
+		-webkit-transform:rotate(1440deg); /}
+}
+
+
+#imgMongoDB{
+	animation:mymove 2s forwards;
+	-webkit-animation:mymove 2s forwards; /* Safari and Chrome */
+}
+
+#imgExpress{
+	animation:mymove 2s forwards;
+	-webkit-animation:mymove 2s forwards; /* Safari and Chrome */
+	animation-delay:2s;
+	-webkit-animation-delay:2s; /* Safari and Chrome */
+}
+
+#imgNode{
+	animation:mymove 2s forwards;
+	-webkit-animation:mymove 2s forwards; /* Safari and Chrome */
+	animation-delay:4s;
+	-webkit-animation-delay:4s; /* Safari and Chrome */
+	}/* OVERRIDE ME */
+
+#imgSocketio{
+		animation:mymove 2s forwards;
+		-webkit-animation:mymove 2s forwards; /* Safari and Chrome */
+		animation-delay:6s;
+		-webkit-animation-delay:6s; /* Safari and Chrome */
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Nodejs, Express and Twig!
+
+	</title>
+	{% block stylesheets %}
+	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	{% endblock %}
+	
+</head>
+<body>
+	{% block navbar %}
+
+	<nav class="navbar navbar-inverse" role="navigation">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="/">Home</a></li>
+			<li ><a href="/blog">Blog</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="tutorial">Full tutorial</a></li>
+					<li class="divider"></li>
+					<li><a href="/tutorial#install">Installing Node.js and modules</a></li>
+					<li><a href="/tutorial#express">Using Express to generate paths</a></li>
+					<li><a href="/tutorial#twig">Using Twig as template engine</a></li>
+					<li><a href="/tutorial#mongo">Using MongoDB to get data</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+	{% endblock %}
+
+
+	<div class="container" >
+		<!-- Static navbar -->
+		{% block content %}
+		<h2>Welcome!!!</h2>
+		<p>This tutorial is focused in learn how can implement using Node.js a simple blog system. I'll use MongoDB as database system, and Node.js modules like mogodb , express and socket.io mainly.
+
+		</p>
+		
+
+		<img id="imgMongoDB" class="img_welcome" src="images/MongoDB.png">
+		<img id="imgExpress" class="img_welcome" src="images/expressjs.png">
+		<img id="imgNode" class="img_welcome" src="images/node.jpg">
+		<img id="imgSocketio" class="img_welcome"src="images/socketio_logo.png">	
+
+
+		<div class="row">
+		  
+		  <div class="span4 offset4">
+		  <div class="btn-group continue"  >
+			<h3>I can't wait....</h3>
+			<a href="/tutorial"><button class="btn btn-primary" id="btn_continue_tutorial">Go to the tutorial!!</button></a>
+		</div>
+		</div>
+		</div>
+
+
+		
+		
+		{% endblock %}
+	</div>
+</body>
+</html>
+
+	
